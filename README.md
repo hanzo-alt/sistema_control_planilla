@@ -1,6 +1,37 @@
 # API REST - Sistema de Control de Asistencia y Planilla
 
-API RESTful desarrollada con **Node.js**, **Express 5** y **MySQL 8** para la gestión de recursos humanos, control de asistencia y cálculo de planillas bajo la normativa laboral y fiscal de Honduras (IHSS, RAP, ISR).
+## Descripción del proyecto
+
+Este proyecto consiste en el desarrollo de una API REST para un sistema de control, cuyo objetivo es gestionar la información y los procesos relacionados con el caso seleccionado.
+
+La API permitirá realizar operaciones de creación, consulta, actualización y eliminación de registros, además de implementar mecanismos de autenticación, autorización y validación de datos.
+
+## Objetivos
+
+- Desarrollar una API REST utilizando buenas prácticas.
+- Diseñar e implementar una base de datos relacional.
+- Implementar operaciones CRUD.
+- Aplicar mecanismos de seguridad mediante JWT y roles.
+- Implementar transacciones y reglas de negocio.
+
+## Tecnologías utilizadas
+
+- **Backend:** Node.js y Express.
+- **Base de datos:** MariaDB.
+- **Autenticación:** JSON Web Token (JWT).
+- **Pruebas:** Postman y bruno.
+- **Control de versiones:** Git y GitHub.
+ 
+
+## Instalación y ejecución
+
+La guía de instalación y ejecución se completará conforme avance el desarrollo del proyecto.
+
+## Estado del proyecto
+
+**Fase actual:** Diseño (Hito 1).
+
+Proyecto académico desarrollado como parte de la asignatura correspondiente.
 
 ## Estructura del Proyecto
 
@@ -9,16 +40,21 @@ Arquitectura por capas para separar rutas, lógica de negocio y consultas a base
 ```text
 proyecto-planilla-api/
 ├── src/
-│   ├── config/          # Conexión MySQL 8 y variables de entorno
+│   ├── config/          # Conexión MariaDB 11.8.6 y variables de entorno
 │   ├── middlewares/     # Validación JWT, roles y manejo de errores
+│   ├── database/
+script de la creacion de la database del proyecto, y scripts sql en general
 │   ├── routes/          # Definición de endpoints (/api)
 │   ├── controllers/     # Manejo de peticiones HTTP (req/res)
 │   ├── services/        # Lógica de negocio y cálculo de planillas
 │   ├── repositories/    # Consultas SQL parametrizadas
-│   └── app.js           # Configuración de Express 5
+│   └──app.js           # Configuración de Express 
 ├── .env.example
 ├── package.json
-└── server.js            # Punto de entrada del servidor
+└── server.js            # 
+
+
+Punto de entrada del servidor
 ```
 
 ## Autenticación y Seguridad
