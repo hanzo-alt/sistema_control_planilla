@@ -35,27 +35,42 @@ Proyecto académico desarrollado como parte de la asignatura correspondiente.
 
 ## Estructura del Proyecto
 
-Arquitectura por capas para separar rutas, lógica de negocio y consultas a base de datos:
+Arquitectura por capas: las rutas solo mapean endpoints, los controladores manejan
+`req`/`res`, los servicios contienen la lógica de negocio y los modelos ejecutan
+las consultas SQL con parámetros (`?`).
 
 ```text
-proyecto-planilla-api/
+sistema_control_planilla/
 ├── src/
-│   ├── config/          # Conexión MariaDB 11.8.6 y variables de entorno
-│   ├── middlewares/     # Validación JWT, roles y manejo de errores
-│   ├── database/
-script de la creacion de la database del proyecto, y scripts sql en general
-│   ├── routes/          # Definición de endpoints (/api)
-│   ├── controllers/     # Manejo de peticiones HTTP (req/res)
-│   ├── services/        # Lógica de negocio y cálculo de planillas
-│   ├── repositories/    # Consultas SQL parametrizadas
-│   └──app.js           # Configuración de Express 
-├── .env.example
+│   ├── config/                       # Configuración
+│   │   ├── database.js               # Pool de MariaDB/MySQL (mysql2/promise)
+│   │   └── tesdb.js                  # Prueba manual de conexión
+│   ├── controllers/                  # Manejo de peticiones HTTP (req/res)
+│   │   ├── asistencias.controller.js
+│   │   └── empleados.controller.js
+│   ├── database/                     # Scripts SQL
+│   │   └── db.sql                    # Creación del esquema y datos iniciales
+│   ├── modelos/                      # Consultas SQL parametrizadas
+│   │   ├── asistencia.modelo.js
+│   │   └── empleado.modelo.js
+│   ├── routes/                       # Definición de endpoints bajo /api
+│   │   ├── asistencias.router.js
+│   │   └── empleados.router.js
+│   ├── services/                     # Lógica de negocio
+│   │   └── jornada.service.js        # Jornada de 8 h y horas extra
+│   └── utils/                        # Apoyo para controladores y rutas
+│       ├── errores.js                # Errores de MySQL → respuestas HTTP
+│       └── validacion.js             # IDs, fechas y fechas con hora
+├── .env.example                      # Plantilla de variables de entorno
+├── .gitignore
 ├── package.json
-└── server.js            # 
-
-
-Punto de entrada del servidor
+├── package-lock.json
+└── server.js                         # Punto de entrada: Express y montaje de /api
 ```
+
+> Nota: las carpetas `middlewares/` y `repositories/` del diseño inicial aún no
+> existen. La validación y el manejo de errores están en `src/utils/`, y el
+> acceso a datos en `src/modelos/`.
 
 ## Autenticación y Seguridad
 
